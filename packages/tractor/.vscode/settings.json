@@ -1,0 +1,14 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  // Configure glob patterns of file paths to exclude from linting
+  "tslint.exclude": "node_modules/**/*",
+  "tslint.configFile": "./tslint.vscode.json",
+  "tslint.rulesDirectory": "node_modules/tslint-microsoft-contrib",
+  "tslint.run": "onType",
+  "tslint.enable": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.exclude": {
+    "lib": true,
+    "node_modules": true
+  }
+}
