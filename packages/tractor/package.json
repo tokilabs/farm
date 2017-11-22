@@ -1,6 +1,6 @@
 {
   "name": "@cashfarm/tractor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Hapi server with superpowers",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@cashfarm/lang": "^0.8.0",
     "@cashfarm/plow": "^0.4.0-RC.1",
-    "@cashfarm/store": "^0.5.6",
+    "@cashfarm/store": "^0.7.2",
     "@types/hapi": "^16.1.10",
     "blipp": "^2.3.0",
     "boom": "^3.2.2",

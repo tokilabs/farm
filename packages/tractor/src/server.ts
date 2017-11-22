@@ -23,18 +23,18 @@ const composeOptions = {
   relativeTo: __dirname
 };
 
-export interface IMsServer extends Server {
+export interface ITractorServer extends Server {
   getContainer(): Container;
   getRouter(): Router;
 }
 
 // tslint:disable-next-line:max-line-length
-export async function createServer(serviceName: string, options?: ITractorConfig, customContainer?: Container): Promise<IMsServer>;
+export async function createServer(serviceName: string, options?: ITractorConfig, customContainer?: Container): Promise<ITractorServer>;
 export async function createServer(
-                        serviceName: string, override?: (server: Server) => void, customContainer?: Container): Promise<IMsServer>;
+                        serviceName: string, override?: (server: Server) => void, customContainer?: Container): Promise<ITractorServer>;
 export async function createServer(
           serviceName: string,
-          override?: ITractorConfig|((server: IMsServer) => void),
+          override?: ITractorConfig|((server: ITractorServer) => void),
           customContainer?: Container):
               Promise<Server> {
   return new Promise<Server>( (resolve, reject) => {
@@ -60,7 +60,7 @@ export async function createServer(
     // @todo Find a better way to configure the port
     manifest.connections[0].port = options.port;
 
-    Glue.compose(manifest, composeOptions, (err?: any, server?: IMsServer) => {
+    Glue.compose(manifest, composeOptions, (err?: any, server?: ITractorServer) => {
       if (err) {
         return reject(err);
       }

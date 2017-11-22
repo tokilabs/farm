@@ -31,14 +31,16 @@
   optionalDependencies:
     node-eventstore-client "^0.1.7"
 
-"@cashfarm/store@^0.5.6":
-  version "0.5.6"
-  resolved "https://registry.npmjs.org/@cashfarm/store/-/store-0.5.6.tgz#da86145aab922a3e460c13cf152654b29f510dc4"
+"@cashfarm/store@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.npmjs.org/@cashfarm/store/-/store-0.7.2.tgz#2299e5dbdf21439b9e052a4761396cdb0a01cb90"
   dependencies:
     "@cashfarm/lang" "^0.6.3"
     debug "^2.2.0"
+    inversify "^4.5.1"
     lodash "^4.17.4"
-    mysql "^2.11.1"
+    mysql "^2.15.0"
+    reflect-metadata "^0.1.10"
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -1913,7 +1915,7 @@ mute-stream@0.0.5:
   version "0.0.5"
   resolved "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
 
-mysql@^2.11.1:
+mysql@^2.15.0:
   version "2.15.0"
   resolved "https://registry.npmjs.org/mysql/-/mysql-2.15.0.tgz#ea16841156343e8f2e47fc8985ec41cdd9573b5c"
   dependencies:
