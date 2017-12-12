@@ -758,7 +758,7 @@ concat-stream@^1.4.7:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
-confidence@^3.0.1:
+confidence@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/confidence/-/confidence-3.0.2.tgz#d1cd29994e3b7bc3f69300f87f5bc265c5335e50"
   dependencies:
