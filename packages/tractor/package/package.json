@@ -1,11 +1,11 @@
 {
   "name": "@cashfarm/tractor",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "A Hapi server with superpowers",
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "build": "yarn clean && yarn tsc",
+    "build": "yarn clean && yarn tsc && cp package.json package/",
     "clean": "rimraf ./lib",
     "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- ./dist/test/*.js",
     "docs": "yarn docs:html && opn docs/index.html",
@@ -14,7 +14,7 @@
     "docs:publish": "yarn docs:html && gh-pages -d docs",
     "indexes": "gulp indexes",
     "lint": "tslint --project ./tsconfig.json -c ./tslint.json",
-    "publish-please": "yarn build && cp package.json package/ && cd package && publish-please",
+    "publish-please": "yarn build && cd package && publish-please",
     "test": "cd tests && mocha --compilers ts:ts-node/register -r tsconfig-paths/register ./*.spec.ts",
     "test:watch": "cd tests && mocha -w --compilers ts:ts-node/register -r tsconfig-paths/register ./*.spec.ts",
     "tsc": "tsc"
@@ -37,7 +37,7 @@
   "homepage": "https://github.com/cashfarm/tractor#README",
   "dependencies": {
     "@cashfarm/lang": "^0.8.0",
-    "@cashfarm/plow": "^0.5.0-rc.6",
+    "@cashfarm/plow": "^0.5.0",
     "@cashfarm/store": "^0.7.2",
     "@types/hapi": "^16.1.10",
     "blipp": "^2.3.0",
