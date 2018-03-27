@@ -39,4 +39,22 @@ export interface ITractorConfig {
    * @memberof IMicroserviceOptions
    */
   decoratePlowModules?: boolean;
+
+  /**
+   * CQRS and messaging options
+   */
+  messaging?: {
+    /**
+     * Wether to enable messaging infrastructure or not
+     * @type {boolean} Default `false`
+     */
+    enabled?: boolean;
+
+    /**
+     * Which broker to use for message transport
+     *
+     * @type {('rabbitmq' | 'pubsub')}
+     */
+    transport?: 'rabbitmq' | 'pubsub';
+  };
 }

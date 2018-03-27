@@ -16,16 +16,24 @@
     reflect-metadata "^0.1.10"
     uuid "^3.1.0"
 
-"@cashfarm/plow@^0.4.0-RC.1":
-  version "0.4.0-RC.2"
-  resolved "https://registry.npmjs.org/@cashfarm/plow/-/plow-0.4.0-RC.2.tgz#0632059d5a4b5990c2baad3104f4708df8b9781c"
+"@cashfarm/lang@^0.8.4":
+  version "0.8.4"
+  resolved "https://registry.npmjs.org/@cashfarm/lang/-/lang-0.8.4.tgz#0aee0e3f12ca75881ddea2cae8b005d766258fbc"
   dependencies:
-    "@cashfarm/lang" "^0.8.0"
+    class-transformer "^0.1.8"
+    reflect-metadata "^0.1.10"
+    uuid "^3.1.0"
+
+"@cashfarm/plow@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.npmjs.org/@cashfarm/plow/-/plow-0.5.0.tgz#8fc16eb26f16164030a04c6d876ed736b45925d7"
+  dependencies:
+    "@cashfarm/lang" "^0.8.4"
     amqplib "^0.5.1"
     bluebird "^3.5.0"
     class-transformer "^0.1.8"
-    inversify "^4.3.0"
-    inversify-binding-decorators "^3.0.0"
+    inversify "^4.11.1"
+    inversify-binding-decorators "^3.2.0"
     servicebus "^2.0.10"
     uuid "3.x"
   optionalDependencies:
@@ -1465,7 +1473,15 @@ inversify-binding-decorators@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/inversify-binding-decorators/-/inversify-binding-decorators-3.0.0.tgz#3784d5ab9ea675915dfff4711434da4b27b78521"
 
-inversify@^4.3.0, inversify@^4.5.1:
+inversify-binding-decorators@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/inversify-binding-decorators/-/inversify-binding-decorators-3.2.0.tgz#95a416583484aa614af1f3b91f7aed1a99da7146"
+
+inversify@^4.11.1:
+  version "4.11.1"
+  resolved "https://registry.npmjs.org/inversify/-/inversify-4.11.1.tgz#9a10635d1fd347da11da96475b3608babd5945a6"
+
+inversify@^4.5.1:
   version "4.5.1"
   resolved "https://registry.npmjs.org/inversify/-/inversify-4.5.1.tgz#2f8a249e1fc5346e4f28b4b86dfae5af1b673178"
 
@@ -2842,13 +2858,6 @@ ts-node@^3.3.0:
     tsconfig "^6.0.0"
     v8flags "^3.0.0"
     yn "^2.0.0"
-
-ts-package-lint@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.npmjs.org/ts-package-lint/-/ts-package-lint-0.2.2.tgz#f863b33e588a29b44e24493a88c286e0c715741a"
-  dependencies:
-    chalk "^1.1.1"
-    glob "^6.0.1"
 
 tsconfig-paths@^2.3.0:
   version "2.4.0"
