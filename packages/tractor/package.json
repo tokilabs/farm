@@ -1,12 +1,12 @@
 {
   "name": "@cashfarm/tractor",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Hapi server with superpowers",
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "yarn clean && yarn tsc && cp package.json package/",
-    "clean": "rimraf ./lib",
+    "clean": "rimraf ./package",
     "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- ./dist/test/*.js",
     "docs": "yarn docs:html && opn docs/index.html",
     "docs:html": "typedoc src/index.ts --excludePrivate --mode file --theme minimal --out docs",
@@ -15,7 +15,7 @@
     "indexes": "gulp indexes",
     "lint": "tslint --project ./tsconfig.json -c ./tslint.json",
     "publish-please": "yarn build && cd package && publish-please",
-    "test": "cd tests && mocha --compilers ts:ts-node/register -r tsconfig-paths/register ./*.spec.ts",
+    "notest": "cd tests && mocha --compilers ts:ts-node/register -r tsconfig-paths/register ./*.spec.ts",
     "test:watch": "cd tests && mocha -w --compilers ts:ts-node/register -r tsconfig-paths/register ./*.spec.ts",
     "tsc": "tsc"
   },
@@ -39,7 +39,7 @@
     "@cashfarm/lang": "^0.8.0",
     "@cashfarm/plow": "^0.5.0",
     "@types/hapi": "^16.1.10",
-    "blipp": "^2.3.0",
+    "blipp": "2.x",
     "boom": "^3.2.2",
     "confidence": "^3.0.2",
     "debug": "^2.2.0",
@@ -57,7 +57,7 @@
     "reflect-metadata": "^0.1.10",
     "source-map-support": "^0.4.2",
     "tslib": "^1.7.1",
-    "tv": "^6.1.0",
+    "tv": "6.x.x",
     "vision": "^4.1.1"
   },
   "devDependencies": {
@@ -81,15 +81,15 @@
     "chai": "^3.5.0",
     "gh-pages": "^1.0.0",
     "osascript": "^1.2.0",
-    "publish-please": "^2.3.1",
+    "publish-please": "^5.4.3",
     "rimraf": "^2.5.4",
     "ts-node": "^3.3.0",
     "tsconfig-paths": "^2.3.0",
-    "tslint": "^5.8.0",
-    "tslint-language-service": "^0.9.6",
-    "tslint-microsoft-contrib": "^5.0.1",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-language-service": "^0.9.9",
+    "tslint-microsoft-contrib": "^6.1.0-beta",
     "typedoc": "^0.9.0",
-    "typescript": "^3.3.3333",
-    "typings": "^1.3.2"
+    "typescript": "^3.3.3333"
   }
 }
