@@ -104,7 +104,7 @@ export function Endpoint(method: EPMethods | EPMethods[], path: string, options:
 
     const meta = Reflect.getOwnMetadata(EndpointMetadataKey, klass) || {};
     meta[propertyKey] = metadata;
-    debug(`Registering endpoint ${metadata.method} ${metadata.path ? metadata.path : "''"} to ${target.constructor.name}.${propertyKey}`);
+    debug(`Registering endpoint ${metadata.method} ${metadata.path ? metadata.path : "''"} to ${target.constructor.name}.${String(propertyKey)}`);
     Reflect.defineMetadata(EndpointMetadataKey, meta, target.constructor);
   };
 }

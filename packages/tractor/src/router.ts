@@ -50,14 +50,14 @@ export class Router implements IRouter {
     const edpts: { [k: string]: EndpointMetadata } = Reflect.getMetadata(EndpointMetadataKey, ctrl.constructor);
 
     Reflect.ownKeys(edpts).forEach(epName => {
-      this.registerEndpoint(ctrl, epName, edpts[epName]);
+      this.registerEndpoint(ctrl, epName, edpts[String(epName)]);
     });
   }
 
   private registerEndpoint(ctrl: IController, methodKey: PropertyKey, meta: EndpointMetadata) {
     const path = (this.prefix + meta.path).trim().length === 0 ? '/' : (this.prefix + meta.path);
 
-    this.server.log('debug', `Mapping route ${path} to ${ctrl.constructor.name}.${methodKey}`);
+    this.server.log('debug', `Mapping route ${path} to ${ctrl.constructor.name}.${String(methodKey)}`);
 
     this.server.route(
       {

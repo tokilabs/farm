@@ -1,6 +1,6 @@
 {
   "name": "@cashfarm/tractor",
-  "version": "0.0.7",
+  "version": "0.1.1",
   "description": "A Hapi server with superpowers",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -38,7 +38,6 @@
   "dependencies": {
     "@cashfarm/lang": "^0.8.0",
     "@cashfarm/plow": "^0.5.0",
-    "@cashfarm/store": "^0.7.2",
     "@types/hapi": "^16.1.10",
     "blipp": "^2.3.0",
     "boom": "^3.2.2",
@@ -68,6 +67,7 @@
     "@types/confidence": "^1.4.30",
     "@types/debug": "^0.0.30",
     "@types/inert": "^4.2.4",
+    "@types/lodash": "^4.14.121",
     "@types/mocha": "^2.2.32",
     "@types/node": "8",
     "@types/pubsub-js": "^1.5.18",
@@ -89,7 +89,7 @@
     "tslint-language-service": "^0.9.6",
     "tslint-microsoft-contrib": "^5.0.1",
     "typedoc": "^0.9.0",
-    "typescript": "^2.5.3",
+    "typescript": "^3.3.3333",
     "typings": "^1.3.2"
   }
 }
