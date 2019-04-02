@@ -24,6 +24,9 @@ export interface IEndpointOptions {
   handler?: string | ( (req: any, reply: any) => any);
   validate?: { query?: any; params?: any; payload?: any; };
   response?: { schema: any; };
+  config?: {
+    auth: string | boolean;
+  };
 }
 
 /**
@@ -65,11 +68,12 @@ export class EndpointMetadata implements IEndpointOptions {
   public tags: string[];
   public validate: { query?: any; params?: any; payload?: any; };
   public response: { schema: any };
+  public config?: { auth: string | boolean; };
 
   constructor(
       method: Hapi.HTTP_METHODS_PARTIAL | '*' | (Hapi.HTTP_METHODS_PARTIAL | '*')[],
       path: string,
-      {vhost, description, notes, tags, validate, response}: IEndpointOptions = {}) {
+      {vhost, description, notes, tags, validate, response, config}: IEndpointOptions = {}) {
     this.method = method;
     this.path = path;
     this.description = description;
@@ -78,6 +82,7 @@ export class EndpointMetadata implements IEndpointOptions {
     this.validate = validate;
     this.response = response;
     this.vhost = vhost;
+    this.config = config;
   }
 }
 
