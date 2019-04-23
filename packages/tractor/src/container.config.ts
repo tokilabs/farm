@@ -21,6 +21,6 @@ export function setupContainer(container: Container, serviceName: string, server
   container.bind(Server).toConstantValue(server);
   container.bind('ApiPrefix').toConstantValue(options.apiPrefix);
 
-  debug(`Container (${container.id}) bindings so far`);
+  debug(`Container (${container.guid}) bindings so far`);
   listContainerBindings(container).map( (b: string, i: number) => debug(i, b));
 }
