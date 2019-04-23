@@ -87,7 +87,7 @@ export async function createServer(
         debug('Controllers:', ctrls);
         server.getRouter().addControllers(ctrls);
 
-        debug(`Container (${container.guid}) bindings so far`);
+        debug(`Container (${container.id}) bindings so far`);
         listContainerBindings(container).map( (b: string, i: number) => debug(i, b));
       });
 

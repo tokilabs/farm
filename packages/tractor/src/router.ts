@@ -68,7 +68,8 @@ export class Router implements IRouter {
           notes: meta.notes,
           tags: meta.tags,
           handler: ctrl[methodKey].bind(ctrl),
-          validate: meta.validate
+          validate: meta.validate,
+          auth: meta.auth
         }
       }
     );
