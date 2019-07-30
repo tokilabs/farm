@@ -1,5 +1,5 @@
-import * as Hapi from 'hapi';
-import * as Boom from 'boom';
+import * as Hapi from '@hapi/hapi';
+import * as Boom from '@hapi/boom';
 
 import { Controller } from '../decorators';
 import { IController } from '../interfaces';
@@ -24,7 +24,7 @@ export class NotFoundCtrl implements IController {
       description: 'Matchs any url to log 404 requests',
       tags: ['api']
   })
-  public notFound(req: Hapi.Request, reply: Hapi.ReplyNoContinue) {
+  public notFound(req: Hapi.Request, res: Hapi.ResponseToolkit) {
     let accept = req.raw.req.headers.accept;
 
     accept = (Array.isArray(accept) ? accept.join() : accept);
@@ -33,9 +33,9 @@ export class NotFoundCtrl implements IController {
       const err = Boom.notFound('Endpoint not found', { url: req.url });
       (<any>err.output.payload).data = err.data;
 
-      return reply(err);
+      return err;
     }
 
-    reply().code(404);
+    return Boom.notFound();
   }
 }

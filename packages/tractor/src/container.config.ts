@@ -1,7 +1,7 @@
 // tslint:disable-next-line:no-import-side-effect
 import 'reflect-metadata';
 
-import { Server } from 'hapi';
+import { Server } from '@hapi/hapi';
 
 import { Container } from '@cashfarm/plow';
 

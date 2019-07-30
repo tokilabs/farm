@@ -21,6 +21,12 @@ By the way, don't worry. Every feature is optional.
 - `@Controller` and `@Endpoint` decorators for Hapi routing
 - `Request` class you can extend to automatically deserialize the request
 
+## Versions
+
+Tractor's minor version now matches the hapi major version, beginning with Hapi 18. Anything lower than that is for Hapi 16.x.
+
+We do not support Hapi 17 (simply because we never used it, feel free to submit a PR)
+
 ## Simple Usage
 
 ```typescript

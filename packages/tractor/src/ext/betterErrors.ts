@@ -1,5 +1,5 @@
-import * as Hapi from 'hapi';
-import * as Boom from 'boom';
+import * as Hapi from '@hapi/hapi';
+import * as Boom from '@hapi/boom';
 
 const server = new Hapi.Server();
 
@@ -8,7 +8,7 @@ export interface IDevErrorPayload extends Boom.Payload {
   stack: any;
 }
 
-export interface IDevError extends Boom.BoomError<any> {
+export interface IDevError extends Boom<any> {
   output: {
     /**
      * statusCode - the HTTP status code (typically 4xx or 5xx).
@@ -31,9 +31,9 @@ export interface IDevError extends Boom.BoomError<any> {
   };
 }
 
-export function betterErrors(request: Hapi.Request, reply: Hapi.ReplyWithContinue) {
-  if (!request.response.isBoom) {
-    return reply.continue();
+export function betterErrors(request: Hapi.Request, reply: Hapi.ResponseToolkit) {  
+  if (typeof request.response['isBoom'] !== 'undefined') {
+    return reply.continue;
   }
 
   const err: IDevError = <any> request.response;
@@ -51,5 +51,5 @@ export function betterErrors(request: Hapi.Request, reply: Hapi.ReplyWithContinu
       err.output.payload.stack = err.stack.split('\n').slice(1).map(l => l.replace(/\s*at\s*/, ''));
   }
 
-  return reply(err);
+  return reply.response(err);
 }

@@ -1,12 +1,12 @@
-import * as Hapi from 'hapi';
-import * as Joi from 'joi';
-import { ConcreteType } from '@cashfarm/lang';
+import * as Hapi from '@hapi/hapi';
+import * as Joi from '@hapi/joi';
+// import { ConcreteType } from '@cashfarm/lang';
 
 const debug = require('debug')('tractor:ioc');
 
 export const EndpointMetadataKey = Symbol.for('tractor:controller:endpoints');
 
-export type EPMethods = Hapi.HTTP_METHODS_PARTIAL | '*';
+export type EPMethods = Hapi.Util.HTTP_METHODS_PARTIAL | '*';
 
 /**
  * Defines possible options for the `@Endpoint` decorator
@@ -24,7 +24,7 @@ export interface IEndpointOptions {
   handler?: string | ( (req: any, reply: any) => any);
   validate?: { query?: any; params?: any; payload?: any; };
   response?: { schema: any; };
-  auth?: false | string | Hapi.AuthOptions;
+  auth?: false | string | Hapi.RouteOptionsAccess;
 }
 
 /**
@@ -45,7 +45,7 @@ export class EndpointMetadata implements IEndpointOptions {
    * a higher priority over a wildcard match). Can be assigned an array of methods which has the
    * same result as adding the same route with different methods manually.
    */
-  public method: Hapi.HTTP_METHODS_PARTIAL | '*' | (Hapi.HTTP_METHODS_PARTIAL | '*')[];
+  public method: EPMethods | EPMethods[];
 
   /**
    * the absolute path used to match incoming requests (must begin with '/').
@@ -66,10 +66,10 @@ export class EndpointMetadata implements IEndpointOptions {
   public tags: string[];
   public validate: { query?: any; params?: any; payload?: any; };
   public response: { schema: any };
-  public auth: false | string | Hapi.AuthOptions;
+  public auth: false | string | Hapi.RouteOptionsAccess;
 
   constructor(
-      method: Hapi.HTTP_METHODS_PARTIAL | '*' | (Hapi.HTTP_METHODS_PARTIAL | '*')[],
+      method: EPMethods | EPMethods[],
       path: string,
       {vhost, description, notes, tags, validate, response, auth}: IEndpointOptions = {}) {
     this.method = method;

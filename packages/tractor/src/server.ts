@@ -2,7 +2,7 @@
 // tslint:disable:no-import-side-effect
 import 'reflect-metadata';
 import { betterErrors } from './ext/betterErrors';
-import { Server } from 'hapi';
+import { Server } from '@hapi/hapi';
 
 import Config from './config';
 import { interfaces as IoC, decorate, inject, injectable, multiInject } from 'inversify';
@@ -82,7 +82,7 @@ export async function createServer(
         override(server);
       }
 
-      server.on('start', () => {
+      server.events.on('start', () => {
         const ctrls = container.getAll(Controllers);
         debug('Controllers:', ctrls);
         server.getRouter().addControllers(ctrls);

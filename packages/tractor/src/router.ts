@@ -1,4 +1,4 @@
-import { Server } from 'hapi';
+import { Server } from '@hapi/hapi';
 import { inject, multiInject } from 'inversify';
 
 import { IController } from './interfaces';
@@ -60,10 +60,10 @@ export class Router implements IRouter {
     this.server.log('debug', `Mapping route ${path} to ${ctrl.constructor.name}.${String(methodKey)}`);
 
     this.server.route(
-      {
+      {      
         method: meta.method,
         path: path,
-        config: {
+        options: {
           description: meta.description,
           notes: meta.notes,
           tags: meta.tags,
