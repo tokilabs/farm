@@ -1,5 +1,5 @@
 // import { decorate } from 'inversify';
-import { provide } from 'inversify-binding-decorators';
+import { provide } from '@cashfarm/plow';
 
 import { ConcreteType, Exception } from '@cashfarm/lang';
 import { container } from '@cashfarm/plow';

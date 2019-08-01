@@ -218,20 +218,25 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-6.2.1.tgz#d3a66329159af879bfdf0b0cff2229c43c5a3451"
   integrity sha512-+ryw4GU9pjr1uT6lBuErHJg3NYqzwJTvZ75nKuJijEzpd00Uqi6oiawTGDDf5Hl0zWmI7qHfOtaqB0kpQZJQzA==
 
+"@hapi/hoek@8.x.x":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-8.1.0.tgz#8f7627b23ed9bf67088fc7f9669e48c63ad421bd"
+  integrity sha512-b1J4jxYnW+n6lC91V6Pqg9imP9BZq0HNCeM+3sbXg05rQsE9cGYrKFpZjyztVesGmNRE6R+QaEoWGATeIiUVjA==
+
 "@hapi/hoek@^6.1.2":
   version "6.2.4"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-6.2.4.tgz#4b95fbaccbfba90185690890bdf1a2fbbda10595"
   integrity sha512-HOJ20Kc93DkDVvjwHyHawPwPkX44sIrbXazAUDiUXaY2R9JwQGo2PhFfnQtdrsIe4igjG2fPgMra7NYw7qhy0A==
 
-"@hapi/inert@5.x.x":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@hapi/inert/-/inert-5.2.0.tgz#cfcf6cd472487870ad7b2d4a89fc42163bd2a83d"
-  integrity sha512-ytsYA46CQOj8AJ3j4keRMj0S1k2XPMuhrlxo/uBY3EJvfRlRs8LtIBIYDW+kmcAqnVaZggcYq4ngKt9H/eEIAA==
+"@hapi/inert@^5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@hapi/inert/-/inert-5.2.1.tgz#97de7e688f9bd9d681bf3dd14280d09ef2414544"
+  integrity sha512-kovx94LVcT9jELc+k4xuR+1lsdmimjHKn9SpI/YAXDioO7m4YzksEBSmneH3ZwVWVnl2j66Sfzvs2IweHRxyNA==
   dependencies:
     "@hapi/ammo" "3.x.x"
     "@hapi/boom" "7.x.x"
     "@hapi/bounce" "1.x.x"
-    "@hapi/hoek" "6.x.x"
+    "@hapi/hoek" "8.x.x"
     "@hapi/joi" "15.x.x"
     lru-cache "4.1.x"
 
@@ -490,7 +495,14 @@
   resolved "https://registry.yarnpkg.com/@types/hapi__catbox/-/hapi__catbox-10.2.0.tgz#530659ee9d61a86f602ffd6cd1c6d48f68458405"
   integrity sha512-ZVbo1qAFC5jRXoSCpFoX4FOLkGlB4hM1NBDsyOGgFeL/W9uX0aHYgtQjFd4aqNye6PKTp/p6iyVR6eeAHvu9nw==
 
-"@types/hapi__hapi@^18.2.5":
+"@types/hapi__glue@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@types/hapi__glue/-/hapi__glue-6.1.0.tgz#e66ca2d1153c4d17fc7e957682a79e2114ed44d7"
+  integrity sha512-OEcT/v6X6m7tRn8vyMYRhnUJZ3G65AlkzBGj0Kuk9SQCqtQmCej7Y+Q8eni2PIEi+ADUWpk+E3/KJjd8cvWeiw==
+  dependencies:
+    "@types/hapi__hapi" "*"
+
+"@types/hapi__hapi@*", "@types/hapi__hapi@^18.2.5":
   version "18.2.5"
   resolved "https://registry.yarnpkg.com/@types/hapi__hapi/-/hapi__hapi-18.2.5.tgz#37afc3db0380e89527bb850a0922f15da0bfe688"
   integrity sha512-hCAQVtE3OZCihJrn5SxQYmAkIdtE1BwAyvGkxwnPwP+IIe0MQxqbP2s0cwlAwimGOdDQ/ArH+7i6FGDKPlZhFQ==

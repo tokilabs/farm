@@ -3,6 +3,7 @@
 import 'reflect-metadata';
 import { betterErrors } from './ext/betterErrors';
 import { Server } from '@hapi/hapi';
+import * as Glue from '@hapi/glue';
 
 import Config from './config';
 import { interfaces as IoC, decorate, inject, injectable, multiInject } from 'inversify';
@@ -15,9 +16,9 @@ import { ITractorConfig } from './iTractorConfig';
 import { setupContainer } from './container.config';
 import { Controllers } from './decorators';
 import { listContainerBindings } from './util';
+import { ConcreteType } from '@cashfarm/lang';
 
 const debug = require('debug')('tractor');
-const Glue = require('glue');
 
 const composeOptions = {
   relativeTo: __dirname
@@ -37,61 +38,49 @@ export async function createServer(
           override?: ITractorConfig|((server: ITractorServer) => void),
           customContainer?: Container):
               Promise<Server> {
-  return new Promise<Server>( (resolve, reject) => {
+  
     const container = customContainer || plowContainer;
 
     const options: ITractorConfig = {
-      debug: true,
+      debug: process.env.NODE_ENV !== 'production',
       enableCors: true,
-      port: 3000
+      port: 3210
     };
 
     if (typeof override === 'object') {
       Object.assign(options, override);
     }
 
-    const criteria = {
+    const criteria = Object.assign({
       env: process.env.NODE_ENV || 'development',
-      debug: 'on'
-    };
+      cors: options.enableCors ? 'on' : 'off'
+    }, options);
 
-    const manifest = Config.get('/', criteria);
+    const manifest = Config.get('/', criteria) as Glue.Manifest;
 
-    // @todo Find a better way to configure the port
-    manifest.connections[0].port = options.port;
+    return Glue.compose(manifest, composeOptions)
+      .then((server?: ITractorServer) => {
+        setupContainer(container, serviceName, server, options);
+        server.decorate('server', 'getContainer', () => container);
 
-    Glue.compose(manifest, composeOptions, (err?: any, server?: ITractorServer) => {
-      if (err) {
-        return reject(err);
-      }
+        if (options.debug) {
+          server.settings.debug = { log: ['error', 'uncaught'], request: ['error', 'uncaught'] };
+          server.ext('onPreResponse', betterErrors);
+        }
 
-      setupContainer(container, serviceName, server, options);
-      server.decorate('server', 'getContainer', () => container);
+        if (typeof override === 'function') {
+          override(server);
+        }
 
-      if (options.enableCors) {
-        const addCorsHeaders = require('hapi-cors-headers');
-        server.ext('onPreResponse', addCorsHeaders);
-      }
+        server.events.on('start', () => {
+          const ctrls = container.getAll<ConcreteType>(Controllers);
+          debug('Controllers:', ctrls);
+          server.getRouter().addControllers(ctrls);
 
-      if (options.debug) {
-        server.settings.debug = { log: ['error', 'uncaught'], request: ['error', 'uncaught'] };
-        server.ext('onPreResponse', betterErrors);
-      }
+          debug(`Container (${container.guid}) bindings so far`);
+          listContainerBindings(container).map( (b: string, i: number) => debug(i, b));
+        });
 
-      if (typeof override === 'function') {
-        override(server);
-      }
-
-      server.events.on('start', () => {
-        const ctrls = container.getAll(Controllers);
-        debug('Controllers:', ctrls);
-        server.getRouter().addControllers(ctrls);
-
-        debug(`Container (${container.guid}) bindings so far`);
-        listContainerBindings(container).map( (b: string, i: number) => debug(i, b));
+        return server;
       });
-
-      resolve(server);
-    });
-  });
 }
