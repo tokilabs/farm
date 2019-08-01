@@ -7,7 +7,7 @@ Sometimes there are a couple things we miss though...
 
 And, when that happens, instead of complaining about it, we create a lang package :)
 
-Check the API documentation at http://cashfarm.github.io/lang
+Check the API documentation at http://tokilabs.github.io/lang
 
 ## Changelog
 

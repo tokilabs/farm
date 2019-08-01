@@ -10,9 +10,9 @@ export interface IEventStore {
    * Returns the next expected version
    *
    * @param {AggregateRoot<any>} aggregate
-   * @returns {Promise<number>}
+   * @returns {Promise<Long>}
    * @memberof IEventStore
    */
-  save(aggregate: AggregateRoot<any>): Promise<number>;
+  save(aggregate: AggregateRoot<any>): Promise<Long>;
   getEventsByAggregate(aggregateType: Type, aggregateId: Identity<Guid> | Guid): Promise<EventEnvelope[]>;
 }

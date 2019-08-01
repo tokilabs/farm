@@ -3,7 +3,7 @@ import { ConcreteType } from '@cashfarm/lang';
 
 import { Symbols } from './symbols';
 
-export const Projections = Symbol.for('cashfarm.plow.projections');
+export const Projections = Symbol.for('tokilabs.plow.projections');
 
 export function Projection(...events: ConcreteType<any>[]) {
   // @todo Check if there is a method to handle each of the events and throw an error if none is found

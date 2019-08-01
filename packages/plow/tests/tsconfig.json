@@ -4,7 +4,6 @@
   "compilerOptions": {
     "target": "ES6",
     "outDir": "compiled",
-    "rootDir": ".",
     "module": "commonjs",
     "noImplicitAny": true,
     "removeComments": true,
@@ -23,7 +22,10 @@
       "es6",
       "dom"
     ],
-    "baseUrl": "." // required for paths
+    "baseUrl": ".", // required for paths
+    "paths": {
+      "@cashfarm/plow": ["../src"]
+    }
   },
   "include": [
     "**/*.ts"

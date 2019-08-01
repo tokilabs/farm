@@ -3,11 +3,13 @@ import { Guid } from '@cashfarm/lang';
 import { Identity, IDomainEvent, IAggregateRoot } from '../domain';
 import { IESAggregateRoot } from './esAggregateRoot';
 
+import 'reflect-metadata';
+
 export interface IEventEnvelope {
   readonly id: Guid;
   readonly aggregateType: string;
   readonly aggregateId: Identity<any>;
-  readonly aggregateVersion: number;
+  readonly aggregateVersion: Long;
   /**
    * Fully Qualified Event Name
    *
@@ -34,7 +36,7 @@ export class EventEnvelope implements IEventEnvelope {
     public readonly id: Guid,
     public readonly aggregateType: string,
     public readonly aggregateId: Identity<any>,
-    public readonly aggregateVersion: number,
+    public readonly aggregateVersion: Long,
     public readonly eventType: string,
     public readonly event: IDomainEvent,
     public readonly metadata?: Object,

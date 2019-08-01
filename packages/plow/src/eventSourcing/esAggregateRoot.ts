@@ -5,12 +5,13 @@ import { AggregateRoot, IAggregateRoot, Identity, IDomainEvent } from '../domain
 import { EventEnvelope } from './eventEnvelope';
 import { Symbols } from '../symbols';
 import { PlowConfig } from '../config';
+import Long = require('long');
 
 const APPLY_CHANGE = Symbol('@cashfarm/plow:ESAggregate.APPLY_CHANGE');
 const LOAD_FROM_EVENTS = Symbol('@cashfarm/plow:ESAggregate.LOAD_FROM_EVENTS');
 
 export interface IESAggregateRoot<TId extends Identity<any> | Guid> extends IAggregateRoot<TId> {
-  readonly version: number;
+  readonly version: Long;
   readonly uncommittedChanges: IDomainEvent[];
   markChangesAsCommitted(): void;
 }
@@ -34,7 +35,7 @@ export function Apply(e: IDomainEvent & Type): symbol {
  */
 export class ESAggregateRoot<TId extends Identity<any> | Guid> extends AggregateRoot<TId> {
   @Exclude()
-  private _version: number = -1;
+  private _version: Long = new Long(-1);
 
   public static load<T extends ESAggregateRoot<any>>(constructor: ConcreteType<T>, events: EventEnvelope[]): T {
     const t = Object.create(constructor.prototype);
@@ -55,7 +56,7 @@ export class ESAggregateRoot<TId extends Identity<any> | Guid> extends Aggregate
     return t;
   }
 
-  get version(): number{
+  get version(): Long{
     return this._version;
   }
 
@@ -64,7 +65,7 @@ export class ESAggregateRoot<TId extends Identity<any> | Guid> extends Aggregate
   }
 
   public markChangesAsCommitted() {
-    this._version += this._events.length;
+    this._version = this._version.add(this._events.length);
     this._events.length = 0;
   }
 
@@ -80,7 +81,7 @@ export class ESAggregateRoot<TId extends Identity<any> | Guid> extends Aggregate
    * @memberof ESAggregateRoot
    */
   private [LOAD_FROM_EVENTS](history: IDomainEvent[]) {
-    this._version = history.length - 1;
+    this._version = new Long(history.length - 1);
     history.forEach( event => this[APPLY_CHANGE](event, false));
   }
 

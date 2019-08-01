@@ -11,5 +11,9 @@
   "files.exclude": {
     "lib": true,
     "node_modules": true
-  }
+  },
+  "tslint.jsEnable": true,
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.suggest.completeFunctionCalls": true,
+  "tslint.packageManager": "yarn"
 }

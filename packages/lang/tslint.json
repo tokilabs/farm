@@ -71,8 +71,8 @@
         "no-internal-module": true,
         "no-trailing-whitespace": true,
         "no-null-keyword": false,
-        "no-unused-variable": true,
         "prefer-const": true,
-        "no-increment-decrement": false
+        "no-increment-decrement": false,
+        "unified-signatures": false
     }
 }

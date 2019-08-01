@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import { TestInterface } from 'ava';
 import { expect } from 'chai';
 
 import { ValueObject } from '@cashfarm/plow';

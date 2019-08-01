@@ -23,11 +23,11 @@ export class TodoStore extends MysqlStore<TodosTable, Todo> {
     super(ConnectionPool);
   }
 
-  public findAll(): Promise<Todo[]> {
+  public async findAll(): Promise<Todo[]> {
     return super.find(null);
   }
 
-  public findById(id: Guid | string) {
+  public async findById(id: Guid | string) {
     return this.findOne(q => q.where(t => t.id.equals(id.toString())));
   }
 

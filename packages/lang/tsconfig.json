@@ -1,9 +1,9 @@
 {
-  "extends": "./config/tsconfig.flexible", // also available: "./config/tsconfig.strict"
+  "extends": "./config/tsconfig.flexible",
   "compileOnSave": true,
   "compilerOptions": {
+    "composite": true,
     "target": "ES6",
-    "rootDir": "src",
     "outDir": "lib",
     "module": "commonjs",
     "noImplicitAny": true,
@@ -25,12 +25,20 @@
     ],
     "plugins": [
       { "name": "tslint-language-service"}
-    ]
+    ],
+    "baseUrl": "./",
+    "declarationMap": true,
+    "paths": {
+      "@tokilabs/lang": ["./src/index"]
+    }
   },
+  "references": [
+    { "path": "./src" },
+    { "path": "./tests" }
+  ],
   "exclude": [
     "node_modules",
     "lib",
-    "tests",
     "gulpfile.ts"
   ]
 }

@@ -29,7 +29,7 @@ export type TransformFn = (value: any, obj: any, transformationType: CT.Transfor
  * @param options Transformation options
  */
 export function Classify(transformFn: TransformFn, options?: IF.ITransformOptions): (target: any, key: string) => void {
-  options = Object.assign(options || {}, { toPlainOnly: true });
+  options = {...(options || {}),  toPlainOnly: true};
 
   return CT.Transform(transformFn, options);
 }
@@ -41,7 +41,7 @@ export function Classify(transformFn: TransformFn, options?: IF.ITransformOption
  * @param options Transformation options
  */
 export function Primitify(transformFn: TransformFn, options?: IF.ITransformOptions): (target: any, key: string) => void {
-  options = Object.assign(options || {}, { toPlainOnly: true });
+  options = {...(options || {}),  toPlainOnly: true};
 
   return CT.Transform(transformFn, options);
 }

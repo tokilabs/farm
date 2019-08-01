@@ -36,8 +36,8 @@ export interface IPlowConfig {
 
 export function CopyPropsToUnderscoreProp(aggt: IAggregateRoot<any>, event: IDomainEvent): void {
   Reflect.ownKeys(event).forEach(k => {
-    if ('_id' === `_${k}`) return;
-    aggt[`_${k}`] = event[k];
+    if ('_id' === `_${String(k)}`) return;
+    aggt[`_${String(k)}`] = event[k];
   });
 }
 
@@ -53,7 +53,7 @@ const _config = {
   defaultApplyFn: CopyPropsToUnderscoreProp
 };
 
-const PLOW_CONFIG = Symbol.for('cashfarm.plow.config');
+const PLOW_CONFIG = Symbol.for('tokilabs.plow.config');
 
 // check if the global object has this symbol
 // add it if it does not have the symbol, yet

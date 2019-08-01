@@ -12,6 +12,7 @@ import { EventEnvelope } from '../eventEnvelope';
 import { IEventStore } from '../iEventStore';
 import { Symbols } from '../../symbols';
 import { ESAggregateRoot } from '../../eventSourcing/esAggregateRoot';
+import * as Long from 'long';
 
 const  debug = require('debug')('plow:events:ges');
 
@@ -23,15 +24,15 @@ export class GesEventStore implements IEventStore {
     @unmanaged() private settings: EventStore.ConnectionSettings = {}) {
   }
 
-  public save<T extends ESAggregateRoot<Identity<Guid>>>(aggregate: T): Promise<number> {
+  public save<T extends ESAggregateRoot<Identity<Guid>>>(aggregate: T): Promise<Long> {
     return this.saveEvents(aggregate.constructor, aggregate.id.value, aggregate.uncommittedChanges, aggregate.version)
-      .then(results => results.reduce<number>((r, c) => c.nextExpectedVersion, 0));
+      .then(results => results.reduce<Long>((_: any, c: { nextExpectedVersion: Long; }) => c.nextExpectedVersion, new Long(0)));
   }
 
   public async getEventsByAggregate(aggregateType: Type, aggregateId: Identity<Guid>): Promise<EventEnvelope[]> {
     const events: EventEnvelope[] = [];
     let currentSlice: EventStore.StreamEventsSlice;
-    let nextSliceStart = 0;
+    let nextSliceStart: Long = new Long(0);
     const streamName = this.getStreamName(aggregateType, aggregateId.value);
 
     const conn = await this.connect();
@@ -69,7 +70,7 @@ export class GesEventStore implements IEventStore {
     );
   }
 
-  private saveEvents(aggtType: Type, aggtId: Guid, events: IDomainEvent[], expectedVersion: number): Promise<EventStore.WriteResult[]> {
+  private saveEvents(aggtType: Type, aggtId: Guid, events: IDomainEvent[], expectedVersion: Long): Promise<EventStore.WriteResult[]> {
     if (!events || events.length === 0)
       throw new Error('Parameter events cannot be null or empty');
 

@@ -3,15 +3,14 @@ import * as Joi from 'joi';
 import * as Boom from 'boom';
 
 import { inject } from 'inversify';
-import { provide } from '@cashfarm/plow';
-import { IController } from '@cashfarm/tractor/interfaces';
-import { Endpoint } from '@cashfarm/tractor/decorators';
 
 import { Todo } from './todo';
 import { TodoStore } from './todoStore';
 
-import { Controller } from '@cashfarm/tractor';
+import { Controller, Endpoint, Controllers } from '@tokilabs/tractor';
+import { provide } from '@cashfarm/plow';
 
+// tslint:disable-next-line: completed-docs
 @Controller
 export class TodoController {
   constructor(@inject(TodoStore) private store: TodoStore) {}
@@ -19,7 +18,7 @@ export class TodoController {
   @Endpoint('GET', '/todos', {
     description: 'Returns all todos'
   })
-  public list(req: Hapi.Request, reply: Hapi.ReplyNoContinue) {
+  public async list(req: Hapi.Request, reply: Hapi.ReplyNoContinue) {
     return this.store.findAll();
   }
 
@@ -32,7 +31,7 @@ export class TodoController {
       })
     }
   })
-  public create(req: Hapi.Request, reply: Hapi.ReplyNoContinue) {
+  public async create(req: Hapi.Request, reply: Hapi.ReplyNoContinue) {
     const todo = new Todo(req.payload.description);
     todo.done = !!req.payload.done;
 

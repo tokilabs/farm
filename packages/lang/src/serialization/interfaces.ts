@@ -67,6 +67,7 @@ export interface ITransformOptions {
   since?: number;
   until?: number;
   groups?: string[];
+  toPlainOnly?: boolean;
 }
 
 export interface ITypeOptions {

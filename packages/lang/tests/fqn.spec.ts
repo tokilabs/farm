@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 
-import { parseFQN, requireByFQN } from '@cashfarm/lang';
+import { parseFQN, requireByFQN } from '@tokilabs/lang';
 
 describe('FQN', () => {
   it('Should throw on FQN missing :', () => {
     // without :
-    expect(() => parseFQN('@cashfarm/lang')).to.throw();
+    expect(() => parseFQN('@tokilabs/lang')).to.throw();
   });
   it('Should throw on FQN missing package name', () => {
     // without package
@@ -21,7 +21,7 @@ describe('FQN', () => {
   });
 
   it('Should import classes correctly', () => {
-    expect(requireByFQN('@cashfarm/lang:Guid')).to.be.equal(require('@cashfarm/lang').Guid);
+    expect(requireByFQN('@tokilabs/lang:Guid')).to.be.equal(require('@tokilabs/lang').Guid);
     expect(requireByFQN('events:EventEmitter')).to.be.equal(require('events').EventEmitter);
   });
 });

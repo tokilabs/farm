@@ -1,11 +1,6 @@
 import * as CT from 'class-transformer';
 import { Constructor } from '../types';
-import {
-  IExcludeOptions,
-  IExposeOptions,
-  ITypeOptions,
-  ITransformationOptions,
-  ITransformOptions } from './interfaces';
+import { ITransformationOptions } from './interfaces';
 
 /**
  * Enum representing the different transformation types.
@@ -29,6 +24,7 @@ export function serialize<TClass>(instance: TClass, options?: ITransformationOpt
  * @param instances The instances to be serialized
  * @param options Transformation options
  */
+export function serialize<TClass>(instances: TClass, options?: ITransformationOptions): string;
 export function serialize<TClass>(instances: TClass[], options?: ITransformationOptions): string;
 export function serialize<TClass>(instances: TClass | TClass[], options?: ITransformationOptions): string {
   return CT.serialize(instances, options);
@@ -45,8 +41,8 @@ export function deserializeArray<TClass>(cls: Constructor<TClass>, json: string,
  * Deserializes given JSON string or primitive object to an object or an array of objects of the given class.
  */
 export function deserialize<TClass>(cls: Constructor<TClass>, json: string, options?: ITransformationOptions): TClass;
-export function deserialize<TClass>(cls: Constructor<TClass>, json: object[], options?: ITransformationOptions): TClass[];
 export function deserialize<TClass>(cls: Constructor<TClass>, json: object, options?: ITransformationOptions): TClass;
+export function deserialize<TClass>(cls: Constructor<TClass>, json: object[], options?: ITransformationOptions): TClass[];
 export function deserialize<TClass>(cls: Constructor<TClass>, json: string | object | object[], options?: ITransformationOptions) {
   if (typeof json === 'string') {
     if (json.trim().startsWith('[')) {

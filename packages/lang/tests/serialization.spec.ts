@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { Decimal, deserialize, deserializeArray } from '@cashfarm/lang';
-import { inspect } from 'util';
+import { deserialize, deserializeArray } from '@tokilabs/lang';
 
+// tslint:disable:completed-docs
 class SampleObject {
   public name: string;
 }

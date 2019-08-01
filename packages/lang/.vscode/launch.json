@@ -2,9 +2,25 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Tests",
       "type": "node",
       "request": "launch",
+      "name": "Mocha Current File",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "--no-timeouts",
+        "--colors",
+        "${file}",
+        "--require",
+        "ts-node/register"
+      ],
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Tests",
       "cwd": "${workspaceRoot}/tests",
       "program": "${workspaceRoot}/node_modules/.bin/_mocha",
       "stopOnEntry": false,
@@ -21,30 +37,35 @@
       "env": {
         "NODE_ENV": "development"
       },
-      "externalConsole": false,
       "sourceMaps": true,
-      "outDir": "${workspaceRoot}/tests/compiled"
+      "outFiles": [
+        "${workspaceRoot}/tests/compiled"
+      ]
     },
     {
-      "name": "Attach",
       "type": "node",
       "request": "attach",
+      "name": "Attach",
       "port": 5858,
       "address": "localhost",
       "restart": false,
       "sourceMaps": true,
-      "outDir": "${workspaceRoot}/lib",
+      "outFiles": [
+        "${workspaceRoot}/lib"
+      ],
       "localRoot": "${workspaceRoot}",
       "remoteRoot": null
     },
     {
-      "name": "Attach to Process",
       "type": "node",
       "request": "attach",
-      "processId": "${command.PickProcess}",
+      "name": "Attach to Process",
+      "processId": "${command:PickProcess}",
       "port": 5858,
       "sourceMaps": true,
-      "outDir": "${workspaceRoot}/lib"
+      "outFiles": [
+        "${workspaceRoot}/lib"
+      ]
     }
   ]
 }

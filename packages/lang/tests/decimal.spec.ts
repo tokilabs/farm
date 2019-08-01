@@ -1,10 +1,10 @@
 import { expect } from 'chai';
-import { Decimal } from '@cashfarm/lang';
+import { Decimal } from '@tokilabs/lang';
 import { inspect } from 'util';
 
 describe('Decimal', () => {
   it('Should be an instance of number', () => {
-    const d = new Decimal(2.0);
+    const d = new Decimal(2);
     // tslint:disable-next-line:chai-vague-errors no-unused-expression
     expect(d instanceof Number, 'Not an instance of Number').to.be.true;
   });
@@ -18,7 +18,7 @@ describe('Decimal', () => {
   });
 
   // Have to disable no-any here because TS still doesn't support operators between types
-  // tslint:disable:no-any
+  // tslint:disable:no-any restrict-plus-operands
   it('Should support math oprations', () => {
     const d: number = <any>new Decimal(2.22);
     expect(d + 2).to.be.equal(2.22 + 2);

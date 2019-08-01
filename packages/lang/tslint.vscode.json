@@ -9,7 +9,6 @@
         "await-promise": false,
         "match-default-export-name": false,
         "no-floating-promises": false,
-        "no-use-before-declare": false,
         "promise-function-async": false,
         "restrict-plus-operands": false,
         "completed-docs": false,
