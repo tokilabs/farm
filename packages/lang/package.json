@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/cashfarm/lang#README",
   "dependencies": {
-    "class-transformer": "^0.1.8",
+    "class-transformer": "^0.3.1",
     "reflect-metadata": "^0.1.10",
     "uuid": "^3.1.0"
   },
