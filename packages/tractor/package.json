@@ -45,7 +45,7 @@
     "@hapi/good": "8.x.x",
     "@hapi/good-console": "8.x.x",
     "@hapi/good-squeeze": "5.x.x",
-    "@hapi/hapi": "18.x.x",
+    "@hapi/hapi": "19.x.x",
     "@hapi/inert": "^5.2.1",
     "@hapi/joi": "15.x.x",
     "@hapi/joi-date": "1.x.x",
